@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+
+@theme { 
+    --color-primary:#028290;
+    --color-secondary:#353535;
+}
+
+.container{width: 96%; margin: auto;}
+
+.swiper-button-next,.swiper-button-prev{display: flex;align-items: center; justify-content: center;width: 30px !important; height:30px
+!important;background: #fff,!important; border-radius: 100% !important;}
+
+.swiper-button-next svg,.swiper-button-prev svg{color: #000!important; width: 15px !important;}
+.swiper-button-next:hover,.swiper-button-prev:hover {
+  background-color: theme('colors.primary');
+}
+.swiper-button-next:hover svg,.swiper-button-prev:hover svg{color: #fff !important}
+
+.btn-border-g{border: 1 solid #02B290 !important;font: weight 600px !important;color: #02B290 !important;}
+.btn-border-g:hover{background:#4abec9 !important; color: #fff !important;border: 1 solid #02B290 !important;}
+
+hr{border-color:rgba(0,0,0,0.1) !important}
+
+.btn-g{width: 120;border: 1 solid #02B290 !important; font-weight:600 !important; color: #fff !important; background:#02B290 !important;}
+.btn-g:hover{background:#0aebff !important; color: #fff !important;border: 1 solid #09cece !important;}
+
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+
+.range-slider{height: 5px !important; margin-top: 15px;}
+.range-slider .range-slider__thumb{ background-color:#02B290 !important;}
