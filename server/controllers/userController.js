@@ -1,6 +1,9 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+const sendEmail = require("../utils/sendEmail");
+
 
 exports.loginUser = async (req, res) => {
   try {
@@ -35,5 +38,46 @@ exports.loginUser = async (req, res) => {
 
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+  if (!user.isVerified) {
+  return res.status(401).json({
+    message: "Please verify your email before login"
+  });
+}
+};
+
+
+
+exports.registerUser = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    const token = crypto.randomBytes(32).toString("hex");
+
+    const user = new User({
+      name,
+      email,
+      password,
+      verificationToken: token,
+      isVerified: false,
+    });
+
+    await user.save();
+
+    const verifyURL = `http://localhost:3000/verify/${token}`;
+
+    await sendEmail(
+      email,
+      "Verify Your Email",
+      `<h3>Click below to verify your email</h3>
+       <a href="${verifyURL}">Verify Email</a>`
+    );
+
+    res.json({
+      message: "Registration successful. Please check your email."
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };

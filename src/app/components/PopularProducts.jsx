@@ -1,12 +1,28 @@
 "use client";
 
 import React from "react";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import ProductSlider from "./ProductSlider";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+
+
 
 const PopularProducts = () => {
   const [value, setValue] = React.useState(0);
+  const [categories, setCategories] = useState([]);
+  const [showMore, setShowMore] = useState(false);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const { data } = await axios.get(
+        "http://localhost:5000/api/categories"
+      );
+      setCategories(data);
+    };
+    fetchCategories();
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -29,26 +45,22 @@ const PopularProducts = () => {
 
           {/* RIGHT */}
           <div className="w-[70%] flex items-center justify-end">
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              variant="scrollable"
-              scrollButtons="auto"
-              aria-label="popular product tabs"
-            >
-              <Tab label="All" />
-              <Tab label="Fruits" />
-              <Tab label="Vegetables" />
-              <Tab label="Meat" />
-              <Tab label="Dairy" />
-              <Tab label="Bakery" />
-              <Tab label="Seafood" />
-            </Tabs>
+            <ul className="flex gap-6">
+              {categories.map((cat) => (
+                <li key={cat._id}>
+                  <Link key={cat._id} href={`/category/${cat._id}`}
+                    className="text-gray-700 ml-5  hover:text-primary transition"
+                  >
+                    {cat.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
         </div>
-      <ProductSlider/>
-      
+        <ProductSlider />
+
       </div>
     </section>
   );

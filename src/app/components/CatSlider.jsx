@@ -37,7 +37,7 @@ const CatSlider = () => {
                     className="mySwiper"
                 >
                     <SwiperSlide>
-                        <Link href={"/Fruits"} className='group'>
+                        <Link href={"/category/69b25a4fd586e1fab8094b10"} className='group'>
                             <div className='bg-white p-3 w-full h-25 rounded-md shadow-md flex items-center'>
                                 <img src={"/cat1.png"} alt='catagory' className='hover:scale-105' />
                             </div>
@@ -48,7 +48,7 @@ const CatSlider = () => {
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <Link href={"/Meats"} className='group'>
+                        <Link href={"/category/69b25a62d586e1fab8094b15"} className='group'>
                             <div className='bg-white p-3 w-full h-25 rounded-md shadow-md flex items-center'>
                                 <img src={"/cat2.png"} alt='catagory' className='hover:scale-105' />
                             </div>
@@ -70,7 +70,7 @@ const CatSlider = () => {
                     </SwiperSlide>
 
                     <SwiperSlide>
-                        <Link href={"/Breads"} className='group'>
+                        <Link href={"/category/69b25a71d586e1fab8094b1a"} className='group'>
                             <div className='bg-white p-3 w-full h-25  rounded-md shadow-md flex items-center'>
                                 <img src={"/cat4.png"} alt='catagory' className='hover:scale-105'></img>
 
@@ -82,7 +82,7 @@ const CatSlider = () => {
 
 
                     <SwiperSlide>
-                        <Link href={"/"} className='group'>
+                        <Link href={"/category/69cfc6135e4ae03c072c2a55"} className='group'>
                             <div className='bg-white p-3 w-full h-25 rounded-md shadow-md flex items-center'>
                                 <img src={"/cat5.png"} alt='catagory' className='hover:scale-105'></img>
 
@@ -106,7 +106,7 @@ const CatSlider = () => {
 
 
                     <SwiperSlide>
-                        <Link href={"/"} className='group'>
+                        <Link href={"/category/69b25a22d586e1fab8094b09"} className='group'>
                             <div className='bg-white p-3 w-full h-25 rounded-md shadow-md flex items-center'>
                                 <img src={"/cat7.png"} alt='catagory' className='hover:scale-105'></img>
 
@@ -119,7 +119,7 @@ const CatSlider = () => {
 
 
                     <SwiperSlide>
-                        <Link href={"/"} className='group'>
+                        <Link href={"/category/69b25a75d586e1fab8094b1f"} className='group'>
                             <div className='bg-white p-3 w-full h-25 rounded-md shadow-md flex items-center'>
                                 <img src={"/cat8.png"} alt='catagory' className='hover:scale-105'></img>
 

@@ -33,7 +33,10 @@ exports.createOrder = async (req, res) => {
     // ✅ CREATE ORDER
     const order = new Order({
       user: req.user._id,
-      orderItems,
+      orderItems: orderItems.map(item => ({
+        product: item.product._id || item.product,
+        quantity: item.quantity,
+      })),
       totalAmount,
       address,
       status: "Paid",
@@ -55,8 +58,10 @@ exports.createOrder = async (req, res) => {
 exports.getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({ user: req.user._id })
-      .populate("orderItems.product");
-
+.populate({
+  path: "orderItems.product",
+  model: "Product"
+});
     res.json(orders);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -68,13 +73,16 @@ exports.getMyOrders = async (req, res) => {
    GET ALL ORDERS (Admin)
 =========================== */
 exports.getAllOrders = async (req, res) => {
+
   try {
+    console.log("ORDERS API HIT");
     const orders = await Order.find()
       .populate("user", "name email")
       .populate("orderItems.product");
 
     res.json(orders);
   } catch (error) {
+    console.log("ERROR IN GET ALL ORDERS:", error);
     res.status(500).json({ message: error.message });
   }
 };

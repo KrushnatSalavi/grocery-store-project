@@ -17,29 +17,34 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+ const handleLogin = async (e) => {
+  e.preventDefault();
 
-    try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/users/login",
-        { email, password }
-      );
+  try {
+    const { data } = await axios.post(
+      "http://localhost:5000/api/users/login",
+      { email, password }
+    );
 
-      // Save token
-      localStorage.setItem("token", data.token);
+    localStorage.setItem("token", data.token);
 
-      // 🔥 Role Based Redirect
-      if (data.role === "admin") {
-        router.push("/admin");
-      } else {
-        router.push("/");
-      }
+    if (data.role === "admin") {
+      router.push("/admin");
+    } else {
+      router.push("/");
+    }
 
-    } catch (err) {
+  } catch (err) {
+    // 🔥 SMART ERROR HANDLING
+    if (err.response?.data?.message === "Please verify your email before login") {
+      setError("⚠️ Please verify your email first");
+    } else {
       setError("Invalid Email or Password");
     }
-  };
+  }
+};
+
+
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-white relative overflow-hidden">
@@ -116,13 +121,7 @@ export default function Login() {
           Or continue with social account
         </p>
 
-        <button className="w-full flex items-center justify-center gap-2 mt-4 border py-2 rounded hover:bg-gray-50 transition">
-          <GoogleIcon />
-          <span className="font-semibold text-sm">
-            LOGIN WITH GOOGLE
-          </span>
-        </button>
-
+        
       </div>
     </section>
   );

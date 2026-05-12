@@ -1,76 +1,116 @@
 "use client";
 
-import Image from "next/image";
-import Rating from "@mui/material/Rating";
-import { Button } from "@mui/material";
-import { useCart } from "../context/CartContext";
-import Link from 'next/link';
+import { useCart } from "@/context/CartContext";
+        import { useRouter } from "next/navigation";
+
 
 export default function CartPage() {
-  const { cart, removeFromCart, subtotal } = useCart();
+  const { cart, removeFromCart } = useCart();
+  const router = useRouter();
+
+
+  const total = cart.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  );
 
   return (
-    <section className="container mx-auto py-10">
-      <div className="grid lg:grid-cols-12 gap-8">
+    <div className="max-w-6xl mx-auto p-6 grid md:grid-cols-3 gap-6">
 
-        {/* LEFT */}
-        <div className="lg:col-span-8 bg-white border rounded-lg">
-          <h2 className="text-lg font-semibold p-4 border-b">
-            Your Cart
-            <p className="text-sm text-gray-500">
-              There are {cart.length} products in your cart
-            </p>
-          </h2>
+      {/* LEFT - CART ITEMS */}
+      <div className="md:col-span-2 bg-white p-5 rounded-xl shadow">
 
-          {cart.map((item) => (
-            <div key={item.id} className="flex items-center gap-4 p-4 border-b">
-              <Image src={item.image} width={70} height={70} alt="Image" />
+        <h2 className="text-xl font-semibold mb-1">Your Cart</h2>
+        <p className="text-sm text-gray-500 mb-4">
+          There are {cart.length} products in your cart
+        </p>
 
-              <div className="flex-1">
-                <p className="text-sm font-semibold">{item.title}</p>
-                <Rating value={5} readOnly size="small" />
+        {cart.map((item) => (
+          <div
+            key={item._id}
+            className="flex items-center justify-between border-b py-4"
+          >
+            {/* LEFT PART */}
+            <div className="flex gap-4 items-center">
 
-                <div className="flex gap-2 text-sm mt-1">
-                  <span className="text-red-600">${item.price}</span>
-                  <span className="line-through text-gray-400">$38.10</span>
-                  <span className="text-green-600">14% OFF</span>
+              {/* IMAGE */}
+              <img
+                src={`http://localhost:5000/uploads/${item.image}`}
+                alt={item.name}
+                className="w-16 h-16 object-contain bg-gray-100 rounded"
+              />
+
+              {/* DETAILS */}
+              <div>
+                <h3 className="font-medium text-sm">{item.name}</h3>
+
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-red-500 font-semibold">
+                    ₹{item.price}
+                  </span>
+
+                  <span className="text-gray-400 line-through text-sm">
+                    ₹{item.price + 10}
+                  </span>
+
+                  <span className="text-green-600 text-xs">
+                    14% OFF
+                  </span>
                 </div>
+
+                <p className="text-xs text-gray-500 mt-1">
+                  Qty: {item.qty}
+                </p>
               </div>
-
-              <button onClick={() => removeFromCart(item.id)}>✕</button>
             </div>
-          ))}
+
+            {/* REMOVE BUTTON */}
+            <button
+              onClick={() => removeFromCart(item._id)}
+              className="text-gray-500 hover:text-red-500 text-xl"
+            >
+              ✕
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* RIGHT - SUMMARY */}
+      <div className="bg-white p-5 rounded-xl shadow h-fit">
+
+        <h2 className="text-lg font-semibold mb-4">Cart Totals</h2>
+
+        <div className="flex justify-between text-sm mb-2">
+          <span>Subtotal</span>
+          <span className="text-red-500 font-semibold">₹{total}</span>
         </div>
 
-        <div className="lg:col-span-4 bg-white border rounded-lg p-6 h-fit">
-          <h3 className="font-semibold mb-4">Cart Totals</h3>
-
-          <div className="flex justify-between text-sm mb-2">
-            <span>Subtotal</span>
-            <span className="text-red-600">${subtotal.toFixed(2)}</span>
-          </div>
-
-          <div className="flex justify-between text-sm mb-2">
-            <span>Shipping</span>
-            <span className="text-green-600">Free</span>
-          </div>
-
-          <div className="flex justify-between text-sm mb-4">
-            <span>Estimate for</span>
-            <span>India</span>
-          </div>
-
-          <div className="flex justify-between font-semibold text-lg">
-            <span>Total</span>
-            <span className="text-red-600">${subtotal.toFixed(2)}</span>
-          </div>
-
-          <Button className="!bg-green-600 !text-white !w-full !mt-5 !capitalize">
-            <Link href={"/Cheakout"}>NEXT</Link>
-          </Button>
+        <div className="flex justify-between text-sm mb-2">
+          <span>Shipping</span>
+          <span className="text-gray-500">Free</span>
         </div>
+
+        <div className="flex justify-between text-sm mb-2">
+          <span>Estimate for</span>
+          <span>India</span>
+        </div>
+
+        <div className="flex justify-between font-bold text-lg mt-3 border-t pt-3">
+          <span>Total</span>
+          <span className="text-red-500">₹{total}</span>
+        </div>
+
+
+
+<button
+  onClick={() => router.push("/Checkout")}
+  className="w-full mt-5 bg-primary text-white py-2 rounded-lg"
+>
+  Next
+</button>
 
       </div>
-    </section>
+
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { CartProvider } from "./context/CartContext";
+import { CartProvider } from "../context/CartContext";
 import "./globals.css";
 
 
@@ -18,6 +18,7 @@ export default function RootLayout({ children }) {
       {children}
       <Footer/>
       </CartProvider>
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       </body>
     </html>
   );

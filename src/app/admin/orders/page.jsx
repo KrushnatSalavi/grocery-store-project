@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const fetchOrders = async () => {
     const token = localStorage.getItem("token");
@@ -26,10 +28,14 @@ export default function OrdersPage() {
 
       setOrders(data);
     } catch (error) {
-      console.error(error);
-      localStorage.removeItem("token");
-      window.location.href = "/admin/login";
-    } finally {
+  console.log("ORDER ERROR:", error.response?.data);
+  console.log("STATUS:", error.response?.status);
+
+  if (error.response?.status === 401) {
+    localStorage.removeItem("token");
+    router.push("/admin/login");
+  }
+} finally {
       setLoading(false);
     }
   };

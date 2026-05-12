@@ -4,7 +4,6 @@ import { useState } from "react";
 import axios from "axios";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import GoogleIcon from "@mui/icons-material/Google";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -100,12 +99,7 @@ export default function Register() {
           Or continue with social account
         </p>
 
-        <button className="w-full flex items-center justify-center gap-2 mt-4 border py-2 rounded hover:bg-gray-50 transition">
-          <GoogleIcon />
-          <span className="font-semibold text-sm">
-            SIGN UP WITH GOOGLE
-          </span>
-        </button>
+        
 
       </div>
     </section>

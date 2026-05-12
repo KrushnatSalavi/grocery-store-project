@@ -91,7 +91,7 @@ export default function AdminCategoriesPage() {
 
         <button
           type="submit"
-          className="bg-green-600 text-white px-6 py-2 rounded"
+          className="bg-primary text-white px-6 py-2 rounded"
         >
           Add Category
         </button>

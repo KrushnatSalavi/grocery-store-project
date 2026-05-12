@@ -53,6 +53,10 @@ app.use("/api/users", userRoutes);
 
 app.use("/uploads", express.static("uploads"));
 
+const paymentRoutes = require("./routes/paymentRoutes");
+
+app.use("/api/payment", paymentRoutes);
+
 
 // Static Folder for Uploads
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

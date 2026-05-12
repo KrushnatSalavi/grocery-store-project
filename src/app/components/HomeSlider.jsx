@@ -4,6 +4,8 @@ import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
+import Link from "next/link";
+
 
 // Import Swiper styles
 import 'swiper/css';
@@ -23,12 +25,12 @@ const HomeSlider = () => {
                     }} className="mySwiper">
                     <SwiperSlide>
                         <div className='item'>
-                            <Image src={"/slide1.png"} alt='slide1' width={1344} height={514} className='w-full'></Image>
+                           <Link href={"/productD"}> <Image src={"/slide1.png"} alt='slide1' width={1344} height={514} className='w-full'></Image></Link>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='item'>
-                            <Image src={"/slide2.png"} alt='slide1' width={1344} height={514} className='w-full'></Image>
+                            <Link href={"/productD"}>  <Image src={"/slide2.png"} alt='slide1' width={1344} height={514} className='w-full'></Image></Link>
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
@@ -38,7 +40,7 @@ const HomeSlider = () => {
                     </SwiperSlide>
                     <SwiperSlide>
                         <div className='item'>
-                            <Image src={"/slide1.png"} alt='slide1' width={1344} height={514} className='w-full'></Image>
+                            <Link href={"/productD"}>  <Image src={"/slide1.png"} alt='slide1' width={1344} height={514} className='w-full'></Image></Link>
                         </div>
                     </SwiperSlide>
 

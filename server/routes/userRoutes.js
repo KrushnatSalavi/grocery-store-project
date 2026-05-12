@@ -7,7 +7,6 @@ const Order = require("../models/Order");
 const { loginUser } = require("../controllers/userController");
 
 router.post("/login", loginUser);
-router.post("/login", loginUser);
 
 // GET ALL USERS (Admin Only)
 router.get("/", protect, adminOnly, async (req, res) => {
@@ -59,6 +58,28 @@ router.put("/profile", protect, async (req, res) => {
     });
   } else {
     res.status(404).json({ message: "User not found" });
+  }
+});
+
+router.get("/verify/:token", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      verificationToken: req.params.token,
+    });
+
+    if (!user) {
+      return res.status(400).send("Invalid token");
+    }
+
+    user.isVerified = true;
+    user.verificationToken = undefined;
+
+    await user.save();
+
+    res.send("Email verified successfully ✅");
+
+  } catch (err) {
+    res.status(500).send("Server error");
   }
 });
 

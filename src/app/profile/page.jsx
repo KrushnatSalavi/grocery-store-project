@@ -14,48 +14,52 @@ export default function Profile() {
   }, []);
 
   const fetchProfile = async () => {
-    try {
-      const token = localStorage.getItem("token");
+  try {
+    const token = localStorage.getItem("token");
 
-      const { data } = await axios.get(
-        "http://localhost:5000/api/users/profile",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+if (!token) {
+  throw new Error("No token");
+}
 
-      setUser(data);
-      setName(data.name);
-      setEmail(data.email);
-    } catch (error) {
-      alert("Please login first");
-      window.location.href = "/login";
-    }
-  };
+const { data } = await axios.get(
+  "http://localhost:5000/api/users/profile",
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
-  const updateProfile = async () => {
-    try {
-      const token = localStorage.getItem("token");
+    setUser(data);
+    setName(data.name);
+    setEmail(data.email);
+  } catch (error) {
+    alert("Please login first");
+    window.location.href = "/login";
+  }
+};
 
-      const { data } = await axios.put(
-        "http://localhost:5000/api/users/profile",
-        { name, email },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+const updateProfile = async () => {
+  try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-      setUser({ ...user, name: data.name, email: data.email });
-      setEditMode(false);
-      alert("Profile updated successfully ✅");
-    } catch (error) {
-      alert("Update failed");
-    }
-  };
+    const { data } = await axios.put(
+      "http://localhost:5000/api/users/profile",
+      { name, email },
+      {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+    );
+
+    setUser(data);
+    setEditMode(false);
+    alert("Profile updated successfully ✅");
+  } catch (error) {
+    alert("Update failed");
+  }
+};
 
   if (!user) return <p className="text-center mt-10">Loading...</p>;
 

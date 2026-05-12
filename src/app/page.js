@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import Banners from "./components/Banners";
 import CatSlider from "./components/CatSlider";
 import HomeSlider from "./components/HomeSlider";
-import LatestP from "./components/LatestP";
 import PopularProducts from "./components/PopularProducts";
 
 export default function Home() {
@@ -29,7 +28,7 @@ export default function Home() {
       <Banners />
 
       <section className="bg-white py-5">
-        <LatestP />
+        {/* <LatestP /> */}
       </section>
     </div>
   );

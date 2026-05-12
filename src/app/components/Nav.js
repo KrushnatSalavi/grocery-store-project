@@ -7,7 +7,6 @@ import { Search } from "lucide-react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { CgProfile } from 'react-icons/cg';
 
-
 export default function Nav() {
   const [categories, setCategories] = useState([]);
 
@@ -22,18 +21,18 @@ export default function Nav() {
   }, []);
 
   return (
-    <div className="shadow-sm border-b">
+    <div className="mb-7">
 
       {/* Top Header */}
-      <div className="flex justify-between items-center px-10 py-4 bg-white">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-4 px-4 md:px-10 py-4 bg-white">
 
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-black">
+        <Link href="/" className="text-xl md:text-2xl font-bold text-black">
           🛍 LaxmiMall
         </Link>
 
         {/* Search Bar */}
-        <div className="w-1/3 relative">
+        <div className="w-full md:w-1/3 relative">
           <input
             type="text"
             placeholder="Search for product..."
@@ -46,60 +45,40 @@ export default function Nav() {
         </div>
 
         {/* Auth Links */}
-        <div className="flex gap-6 text-gray-700 font-medium">
+        <div className="flex gap-4 md:gap-6 text-gray-700 font-medium items-center">
           <Link href="/login">Login</Link>
           <Link href="/register">Register</Link>
+
           <Link href={"/cart"} className='relative flex'>
-
-            <HiOutlineShoppingBag size={30} />
-
+            <HiOutlineShoppingBag size={26} />
           </Link>
+
           <Link href={"/profile"} className='relative flex'>
-
-            <CgProfile size={30} />
-
+            <CgProfile size={26} />
           </Link>
         </div>
-
-
-
       </div>
 
       {/* Category Navbar */}
-      <div className="bg-white border-t">
-        <div className="flex gap-8 px-10 py-3 text-gray-700 font-medium overflow-x-auto whitespace-nowrap">
-
-          <Link href="/" className="hover:text-black">
-            Home
-          </Link>
-
-          <Link href="/Fruits" className="hover:text-black">
-            Fruits & Vegetables
-          </Link>
-
-          <Link href="/Meats" className="hover:text-black">
-            Meats & Seafood
-          </Link>
-
-          <Link href="/Breaksfast" className="hover:text-black">
-            Breakfast & Dairy
+      <div className="overflow-x-auto">
+        <ul className="flex gap-4 md:gap-6 px-4 md:px-5 py-2 whitespace-nowrap">
+          <Link href="/">
+            <div className="text-gray-700 hover:text-primary font-medium transition">
+              Home
+            </div>
           </Link>
 
           {categories.map((cat) => (
-            <Link
-              key={cat._id}
-              href={`/category/${cat._id}`}
-              className="hover:text-black"
-            >
-              {cat.name}
-            </Link>
+            <li key={cat._id}>
+              <Link
+                href={`/category/${cat._id}`}
+                className="text-gray-700 hover:text-primary font-medium transition"
+              >
+                {cat.name}
+              </Link>
+            </li>
           ))}
-
-          <span className="cursor-pointer hover:text-black">
-            More ▼
-          </span>
-
-        </div>
+        </ul>
       </div>
 
     </div>
