@@ -14,7 +14,7 @@ export default function OrdersPage() {
 
     // If no token → redirect
     if (!token) {
-      window.location.href = "/admin/login";
+      router.push("/admin/login");
       return;
     }
 

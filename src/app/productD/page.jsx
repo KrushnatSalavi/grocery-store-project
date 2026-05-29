@@ -5,8 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
 import { Button } from "@mui/material";
-import { useCart } from "../context/CartContext";
-
+import { useCart } from "@/context/CartContext";
 
 
 
