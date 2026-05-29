@@ -8,7 +8,7 @@ import Nav from './Nav';
 
 const Header = () => {
     return (
-        <div className='headerWrapper sticky top-0 z-50 bg-white'>
+        <div className='headerWrapper  top-0 z-50 bg-white'>
             {/* <header className='py-3 border-b-2 border-b-gray-300'>
                 <div className='container flex items-center justify-between m-auto p-3'>
                     <div className='logo -ml-30'>

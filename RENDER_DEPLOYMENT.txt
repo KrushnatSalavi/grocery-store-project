@@ -1,0 +1,28 @@
+Render web service configuration for the grocery-store project
+
+Service name: grocery-store-project
+Language/runtime: Node
+Branch: main
+Region: Virginia (US East)
+Root directory: (none specified, repository root)
+
+Build command:
+  npm install; npm run build
+
+Start command:
+  npm run start
+
+Instance type:
+  Free (512 MB RAM, 0.1 CPU) or upgrade as needed
+
+Environment variables:
+  PORT (set by Render automatically when using a web service)
+  Other secrets/config values should be added through Render's dashboard.
+
+Notes:
+- This repository uses Next.js with a custom Express backend under `server/`.
+- The package scripts are:
+    dev: next dev
+    build: next build
+    start: next start
+- Confirm any extra environment variables required by the backend before deploying.
