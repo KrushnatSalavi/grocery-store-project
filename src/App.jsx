@@ -12,10 +12,9 @@ function App() {
       <div className="flex">
         <Sidebar />
 
-        <div className="ml-64 w-full bg-gray-100 min-h-screen">
-          <Navbar />
+        <div className="w-full md:ml-64 bg-gray-100 min-h-screen">          <Navbar />
 
-          <div className="p-6">
+          <div className="p-4 sm:p-5 md:p-6">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
