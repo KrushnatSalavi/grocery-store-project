@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import Banners from "./components/Banners";
 import CatSlider from "./components/CatSlider";
 import HomeSlider from "./components/HomeSlider";
-import PopularProducts from "./components/PopularProducts";
 
 export default function Home() {
   const router = useRouter();
@@ -24,7 +23,6 @@ export default function Home() {
     <div className="bg-[#f1f1f1]">
       <HomeSlider />
       <CatSlider />
-      <PopularProducts />
       <Banners />
 
       <section className="bg-white py-5">
