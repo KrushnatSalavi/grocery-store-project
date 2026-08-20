@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
+import { API_URL } from "@/lib/api";
 
 export default function ProductsPage() {
   const [products, setProducts] = useState([]);
+
 
   const [form, setForm] = useState({
     name: "",
@@ -17,7 +19,7 @@ export default function ProductsPage() {
 
   // 🔥 Fetch categories
   useEffect(() => {
-    fetch("http://localhost:5000/api/categories")
+    fetch(`${API_URL}/api/categories`)
       .then(res => res.json())
       .then(data => setCategories(data));
   }, []);
@@ -32,7 +34,7 @@ export default function ProductsPage() {
 
     formData.append("image", image);
 
-    const res = await fetch("http://localhost:5000/api/products", {
+    const res = await fetch(`${API_URL}/api/products`, {
       method: "POST",
       headers: {
         Authorization: `Bearer YOUR_TOKEN`,
@@ -46,7 +48,7 @@ export default function ProductsPage() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${API_URL}/api/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -140,7 +142,7 @@ export default function ProductsPage() {
             <tr key={product._id}>
               <td className="border px-4 py-2">
                 <img
-                  src={`http://localhost:5000/uploads/${product.image}`}
+                  src={`${API_URL}/uploads/${product.image}`}
                   alt={product.name}
                   width="80"
                 />

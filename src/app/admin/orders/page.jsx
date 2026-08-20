@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { API_URL } from "@/lib/api";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
@@ -20,7 +21,7 @@ export default function OrdersPage() {
 
     try {
       const { data } = await axios.get(
-        "http://localhost:5000/api/orders",
+        `${API_URL}/api/orders`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -45,7 +46,7 @@ export default function OrdersPage() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/orders/${orderId}`,
+        `${API_URL}/api/orders/${orderId}`,
         { status: newStatus },
         {
           headers: { Authorization: `Bearer ${token}` },

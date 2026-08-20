@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import { API_URL } from "@/lib/api";
+
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -10,7 +12,7 @@ export default function ProductPage() {
   useEffect(() => {
     if (!id) return;
 
-    fetch(`http://localhost:5000/api/products/${id}`)
+    fetch(`${API_URL}/api/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data))
       .catch(err => console.log(err));
@@ -24,7 +26,7 @@ export default function ProductPage() {
       {/* IMAGE */}
       <div className="bg-gray-100 flex items-center justify-center rounded-lg p-4">
         <img
-          src={`http://localhost:5000/uploads/${product.image}`}
+          src={`${API_URL}/uploads/${product.image}`}
           alt={product.name}
           className="max-h-80 object-contain"
         />

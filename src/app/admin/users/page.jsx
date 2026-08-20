@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState([]);
@@ -10,7 +11,7 @@ export default function AdminUsersPage() {
     const token = localStorage.getItem("token");
 
     const { data } = await axios.get(
-      "http://localhost:5000/api/users",
+      `${API_URL}/api/users`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -29,7 +30,7 @@ export default function AdminUsersPage() {
     const token = localStorage.getItem("token");
 
     await axios.delete(
-      `http://localhost:5000/api/users/${id}`,
+      `${API_URL}/api/users/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

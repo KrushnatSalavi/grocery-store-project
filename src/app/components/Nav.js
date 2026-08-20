@@ -6,6 +6,8 @@ import axios from "axios";
 import { Search } from "lucide-react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { CgProfile } from 'react-icons/cg';
+import { API_URL } from "@/lib/api";
+
 
 export default function Nav() {
   const [categories, setCategories] = useState([]);
@@ -13,7 +15,7 @@ export default function Nav() {
   useEffect(() => {
     const fetchCategories = async () => {
       const { data } = await axios.get(
-        "http://localhost:5000/api/categories"
+        `${API_URL}/api/categories`
       );
       setCategories(data);
     };

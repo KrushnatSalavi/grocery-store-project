@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({
@@ -27,7 +28,7 @@ export default function AdminDashboard() {
 
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/admin/dashboard-stats",
+          `${API_URL}/api/admin/dashboard-stats`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

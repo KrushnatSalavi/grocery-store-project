@@ -2,6 +2,8 @@
 
 import { useCart } from "@/context/CartContext";
 import { useState, useEffect } from "react";
+import { API_URL } from "@/lib/api";
+
 
 export default function CheckoutPage() {
   const { cart } = useCart();
@@ -32,7 +34,7 @@ export default function CheckoutPage() {
   // ✅ PAYMENT HANDLER
   const handlePayment = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/payment/create-order", {
+      const res = await fetch(`${API_URL}/api/payment/create-order`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +54,7 @@ export default function CheckoutPage() {
 
         handler: async function (response) {
           const verifyRes = await fetch(
-            "http://localhost:5000/api/payment/verify",
+            `${API_URL}/api/payment/verify`,
             {
               method: "POST",
               headers: {

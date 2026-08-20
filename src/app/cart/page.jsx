@@ -1,7 +1,8 @@
 "use client";
 
 import { useCart } from "@/context/CartContext";
-        import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { API_URL } from "@/lib/api";
 
 
 export default function CartPage() {
@@ -35,7 +36,7 @@ export default function CartPage() {
 
               {/* IMAGE */}
               <img
-                src={`http://localhost:5000/uploads/${item.image}`}
+                src={`${API_URL}/uploads/${item.image}`}
                 alt={item.name}
                 className="w-16 h-16 object-contain bg-gray-100 rounded"
               />
@@ -102,12 +103,12 @@ export default function CartPage() {
 
 
 
-<button
-  onClick={() => router.push("/Checkout")}
-  className="w-full mt-5 bg-primary text-white py-2 rounded-lg"
->
-  Next
-</button>
+        <button
+          onClick={() => router.push("/Checkout")}
+          className="w-full mt-5 bg-primary text-white py-2 rounded-lg"
+        >
+          Next
+        </button>
 
       </div>
 

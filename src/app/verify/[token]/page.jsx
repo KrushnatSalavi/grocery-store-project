@@ -2,12 +2,14 @@
 
 import { useEffect } from "react";
 import { useParams } from "next/navigation";
+import { API_URL } from "@/lib/api";
+
 
 export default function VerifyPage() {
   const { token } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/users/verify/${token}`)
+    fetch(`${API_URL}/api/users/verify/${token}`)
       .then(res => res.text())
       .then(data => alert(data))
       .catch(err => console.log(err));

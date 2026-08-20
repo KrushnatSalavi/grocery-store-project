@@ -10,7 +10,7 @@ export default function AdminCategoriesPage() {
 
   const fetchCategories = async () => {
     const { data } = await axios.get(
-      "http://localhost:5000/api/categories"
+      `${API_URL}/api/categories`
     );
     setCategories(data);
   };

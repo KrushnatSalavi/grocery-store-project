@@ -38,7 +38,7 @@ fetch(`${API_URL}/api/products?category=${id}`)
                 {/* IMAGE */}
                 <div className="w-full h-32 sm:h-40 bg-gray-100 flex items-center justify-center rounded-lg overflow-hidden">
                   <img
-                    src={`http://localhost:5000/uploads/${product.image}`}
+                    src={`${API_URL}/uploads/${product.image}`}
                     alt={product.name}
                     className="max-h-full object-contain"
                   />

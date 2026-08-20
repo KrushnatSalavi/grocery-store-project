@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { API_URL } from "@/lib/api";
 
 export default function AddProductPage() {
   const [categories, setCategories] = useState([]);
@@ -18,7 +19,7 @@ export default function AddProductPage() {
 
   // 🔹 Fetch categories from backend
   useEffect(() => {
-    fetch("http://localhost:5000/api/categories")
+    fetch(`${API_URL}/api/categories`)
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.error("Category Fetch Error:", err));
@@ -53,7 +54,7 @@ export default function AddProductPage() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/products/add",
+        `${API_URL}/api/products/add`,
         {
           method: "POST",
           body: data,
