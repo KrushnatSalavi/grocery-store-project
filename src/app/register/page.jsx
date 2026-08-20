@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { API_URL } from "@/lib/api";
 
 export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +16,7 @@ export default function Register() {
   const handleRegister = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/register",
+        `${API_URL}/api/auth/register`,
         {
           name,
           email,

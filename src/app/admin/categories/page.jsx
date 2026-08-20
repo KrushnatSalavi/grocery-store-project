@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "@/lib/api";
 
 export default function AdminCategoriesPage() {
   const [categories, setCategories] = useState([]);
@@ -28,7 +29,7 @@ export default function AdminCategoriesPage() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/categories",
+        `${API_URL}/api/categories`,
         { name },
         {
           headers: {
@@ -55,7 +56,7 @@ export default function AdminCategoriesPage() {
       const token = localStorage.getItem("token");
 
       await axios.delete(
-        `http://localhost:5000/api/categories/${id}`,
+        `${API_URL}/api/categories/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

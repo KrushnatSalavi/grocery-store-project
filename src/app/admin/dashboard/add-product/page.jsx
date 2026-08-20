@@ -1,5 +1,5 @@
 "use client";
-
+import { API_URL } from "@/app/lib/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -41,7 +41,7 @@ export default function AddProduct() {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:5000/api/products/add", {
+      const res = await fetch(`${API_URL}/api/products/add`, {
         method: "POST",
         body: data,
       });

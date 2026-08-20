@@ -4,10 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
+import {API_url} from "@/lib/api";
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import GoogleIcon from "@mui/icons-material/Google";
 
 export default function Login() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function Login() {
 
   try {
     const { data } = await axios.post(
-      "http://localhost:5000/api/users/login",
+      `${API_URL}/api/users/login`,
       { email, password }
     );
 

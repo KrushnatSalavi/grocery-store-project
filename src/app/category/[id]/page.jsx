@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { API_URL } from "@/lib/api";
 
 export default function CategoryPage() {
   const { id } = useParams();
@@ -13,7 +14,7 @@ export default function CategoryPage() {
   useEffect(() => {
     if (!id) return;
 
-    fetch(`http://localhost:5000/api/products?category=${id}`)
+fetch(`${API_URL}/api/products?category=${id}`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error(err));
