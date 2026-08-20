@@ -1,5 +1,5 @@
 "use client";
-import { API_URL } from "@/app/lib/api";
+import { API_URL } from "@/lib/api";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
